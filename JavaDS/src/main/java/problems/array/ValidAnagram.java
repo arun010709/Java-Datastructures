@@ -27,8 +27,8 @@ public class ValidAnagram {
             hm.put(ch,hm.getOrDefault(ch,0)-1);
         }
 
-        for(var pair:hm.entrySet()){
-            if(pair.getValue()!=0){
+        for(Map.Entry<Character,Integer> entry:hm.entrySet()){
+            if(entry.getValue()!=0){
                 return false;
             }
         }
