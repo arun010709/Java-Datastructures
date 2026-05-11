@@ -68,32 +68,9 @@ b- **Write-Ahead Logging:** Log changes before applying them
 b- **Geo-Redundancy:** Store data across different regions 
 
 # More Real-World Examples:
-table|
-td|
-sacrifice|	Why|
-td|
-td|
-td|
-td|
-td|
-td|
-td|
-td|
-td|
-td||
-generic table with columns: Company, Prioritizes, Sacrifices, Why.
-details as provided in the text.
-e.g.,
-'table>
-default table with headers and rows matching the examples provided.
-'table>
-default table with headers and rows matching the examples provided.
-'table>
-default table with headers and rows matching the examples provided.
-'table>
-default table with headers and rows matching the examples provided.
-'table>
-details as provided in the text.
-e.g.,
-'table>
-default table with headers and rows matching the examples provided.
+Company,Prioritizes,Sacrifices,Why
+SpaceX,Speed & Innovation,Short-term Cost,"Rapid iteration and ""failing fast"" allow for market dominance via reusable tech despite high R&D burn."
+Apple,Quality & Design,Affordability (Cost),"Premium positioning ensures high margins and brand loyalty, even if it limits the total addressable market."
+Amazon,Speed & Scale,Short-term Profit,"Sacrificing immediate margins for logistics infrastructure builds a competitive ""moat"" that is difficult to replicate."
+Toyota,Reliability (Quality),Cutting-edge Features,Prioritizing proven technology over the latest trends ensures long-term vehicle durability and brand trust.
+Ryanair / Spirit,Low Cost,Customer Comfort,Stripping away all non-essential services allows for the lowest possible price point for budget-sensitive travelers.
