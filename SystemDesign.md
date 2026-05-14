@@ -74,3 +74,21 @@ Apple,Quality & Design,Affordability (Cost),"Premium positioning ensures high ma
 Amazon,Speed & Scale,Short-term Profit,"Sacrificing immediate margins for logistics infrastructure builds a competitive ""moat"" that is difficult to replicate."
 Toyota,Reliability (Quality),Cutting-edge Features,Prioritizing proven technology over the latest trends ensures long-term vehicle durability and brand trust.
 Ryanair / Spirit,Low Cost,Customer Comfort,Stripping away all non-essential services allows for the lowest possible price point for budget-sensitive travelers.
+
+Rate limiter:
+1.A rate limiter prevents DoS attacks, intentional or unintentional, by blocking the excess calls.
+2.Reduces cost where the system is using a 3rd-party API service and is charged on a per-call-basis.
+3.To reduce server load, a rate limiter is used to filter out excess requests caused by bots or users’ misbehaviour.
+
+1.Client-side:
+The client is an unreliable place to enforce rate limiting because client requests can easily be forged by malicious actors.
+
+2.Server-side:
+Even better than placing it on the server side is to use a rate limiter middleware, which will throttle excess requests even to our server side.
+
+3.Middle-ware:
+Like API gateway that sits between front end and server side.
+
+Algorithms:
+1.Token Bucket Algorithm:
+

@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class IsomorphicString {
 
     public static void main(String args[]){
-        String s="egge";
+        String s="dbba";
         String t="abbd";
 
         System.out.print(isIsomorphic(s,t));

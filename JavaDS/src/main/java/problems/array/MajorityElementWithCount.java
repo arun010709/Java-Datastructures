@@ -5,7 +5,7 @@ package problems.array;
 public class MajorityElementWithCount {
 
     public static void main(String args[]){
-        int nums[]={7,9,7,8,8,8};
+        int nums[]={7,7,9};
         int candidate=0;
         int count=0;
 
