@@ -89,6 +89,20 @@ Even better than placing it on the server side is to use a rate limiter middlewa
 3.Middle-ware:
 Like API gateway that sits between front end and server side.
 
-Algorithms:
-1.Token Bucket Algorithm:
+# Storage related HLD questions:
+1.What if a distributed lock never releases?
+Problem:
+If a distributed lock never releases, then other services or processes waiting for that lock may remain blocked indefinitely.
+This can slow down the entire workflow and sometimes even stop critical operations completely.
+In distributed systems, locks are often used to ensure only one process performs a sensitive operation at a time.
+So if the lock gets stuck, many requests may start waiting behind it.
+
+Fix:
+Distributed locks are useful, but they must always be designed assuming failures can happen while holding the lock.
+
+So systems should include:
+1.Lock expiration
+2.Monitoring 
+3.Retries
+4.Careful timeout handling to prevent the entire workflow from getting blocked because of one stuck lock.
 
