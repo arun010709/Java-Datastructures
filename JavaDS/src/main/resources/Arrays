@@ -1,0 +1,11 @@
+Two-pointers:
+Flag it as a two-pointer problem if you see these keywords or constraints:
+1.The input array is sorted.
+2.Find a pair/triplet that satisfies.
+3.In-place modifications required.
+
+Flavor 1: Opposite Ends (Convergence)
+Operational Logic
+Mechanism: Two pointers start at opposite ends of a structured sequence (left = 0, right = length - 1) and step inward based on evaluation criteria.
+
+Precondition: The input underlying collection must be sorted to allow predictable direction changes.
