@@ -6,13 +6,17 @@ public class ProducerConsumer {
     private LinkedList<Integer> buffer = new LinkedList<>();
     private final int CAPACITY = 5;
 
-    public void produce() throws InterruptedException {
+    private void produce() {
         int value = 0;
         while (true) {
             synchronized (this) {
                 // 1. Wait if buffer is full
                 while (buffer.size() == CAPACITY) {
-                    wait();
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 System.out.println("Producer produced: " + value);
@@ -20,18 +24,28 @@ public class ProducerConsumer {
 
                 // 2. Notify the consumer that there is data
                 notify();
-
-                Thread.sleep(1000); // Simulating time taken to produce
             }
+
+            try {
+                Thread.sleep(1000); // Simulating time taken to produce
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+
         }
     }
 
-    public void consume() throws InterruptedException {
+    private void consume() {
         while (true) {
             synchronized (this) {
                 // 1. Wait if buffer is empty
                 while (buffer.size() == 0) {
-                    wait();
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 int val = buffer.removeFirst();
@@ -39,24 +53,24 @@ public class ProducerConsumer {
 
                 // 2. Notify the producer that there is space
                 notify();
+            }
 
+            try {
                 Thread.sleep(1000); // Simulating time taken to consume
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
     public static void main(String[] args) {
-        ProducerConsumer pc = new ProducerConsumer();
+        ProducerConsumer producerConsumer = new ProducerConsumer();
 
-        Thread t1 = new Thread(() -> {
-            try { pc.produce(); } catch (InterruptedException e) {}
-        });
+        Thread producerThread = new Thread(producerConsumer::produce);
 
-        Thread t2 = new Thread(() -> {
-            try { pc.consume(); } catch (InterruptedException e) {}
-        });
+        Thread consumerThread = new Thread(producerConsumer::consume);
 
-        t1.start();
-        t2.start();
+        producerThread.start();
+        consumerThread.start();
     }
 }

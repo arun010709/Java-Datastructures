@@ -1,42 +1,51 @@
 package threads;
 
 public class EvenOddThreads {
-    private int counter = 1;
-    private final int limit = 10;
+    int counter=1;
+    int limit=10;
 
-    // Method for the Odd thread
-    public void printOdd() {
+    private void printOdd(){
         synchronized (this) {
             while (counter < limit) {
-                while (counter % 2 == 0) { // Wait if the counter is even
-                    try { wait(); } catch (InterruptedException e) { e.printStackTrace(); }
+                //wait if it's an even thread
+                if (counter % 2 == 0) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-                System.out.println("Odd Thread: " + counter);
+
+                System.out.println("Odd thread " + counter);
                 counter++;
-                notify(); // Wake up the Even thread
+                notify();
             }
         }
     }
 
-    // Method for the Even thread
-    public void printEven() {
+    private void printEven(){
         synchronized (this) {
             while (counter <= limit) {
-                while (counter % 2 != 0) { // Wait if the counter is odd
-                    try { wait(); } catch (InterruptedException e) { e.printStackTrace(); }
+                //wait if it's an odd thread
+                if (counter % 2 != 0) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-                System.out.println("Even Thread: " + counter);
+
+                System.out.println("Even thread " + counter);
                 counter++;
-                notify(); // Wake up the Odd thread
+                notify();
             }
         }
     }
 
-    public static void main(String[] args) {
-        EvenOddThreads resource = new EvenOddThreads();
-
-        Thread t1 = new Thread(resource::printOdd);
-        Thread t2 = new Thread(resource::printEven);
+    public static void main(String args[]){
+        EvenOddThreads evenOddThreads= new EvenOddThreads();
+        Thread t1 = new Thread(evenOddThreads::printEven);
+        Thread t2 = new Thread(evenOddThreads::printOdd);
 
         t1.start();
         t2.start();
